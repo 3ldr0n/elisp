@@ -3,13 +3,19 @@
 ;;; Binary search algorithm
 ;;; Code:
 
-(setq prices '(3 22 4 5 10))
+(setq prices '(3 4 5 10 22))
 
 (defun binary-search (list el)
-  "Binary search."
+  "Search in `LIST' for `EL'."
   (setq mid (/ (length list) 2))
-  (print mid))
 
-(binary-search prices)
+  (if (= el (nth mid list))
+      (print el))
+
+  (if (> el (nth mid list))
+      (binary-search (nthcdr mid list) el)
+    (binary-search (nthcdr 0 list) el)))
+
+(binary-search prices 4)
 
 ;;; binary-search.el  ends here
